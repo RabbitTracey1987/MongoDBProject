@@ -4,7 +4,7 @@ const User = require('../src/user');
 describe('Updating records',()=>{
 	let joe;
 	beforeEach((done)=>{
-		joe = new User({name:"Joe"});
+		joe = new User({name:"Joe",postcount:0});
 		joe.save()
 		   .then(()=>done());
 	});
@@ -42,6 +42,9 @@ describe('Updating records',()=>{
       User.findByIdAndUpdate(joe._id,{name:'Alex'}),
       done
   	  );
+  });
+  it('A user can have their postcount incremented by 1',()=>{
+  	User.update({name:'Joe'},{postcount:1});
   });
 
 
